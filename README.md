@@ -7,7 +7,7 @@
 ## Системные требования
 - Python 3.6+
 - Docker
-Works on Linux, Windows
+- Works on Linux, Windows
 ## Стек технологий
 - Python 3.10
 - Django 2.2.19
