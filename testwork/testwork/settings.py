@@ -4,6 +4,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+REST_PERMISSION = 'IsAuthenticatedOrReadOnly'
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -21,6 +23,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'mailings',
+    'rest_framework',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -115,3 +119,18 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+if DEBUG:
+    REST_PERMISSION = 'AllowAny'
+
+REST_FRAMEWORK = {
+    'DATETIME_FORMAT': "%Y-%m-%d - %H:%M:%S",
+
+    'DEFAULT_PERMISSION_CLASSES': [ 
+        f'rest_framework.permissions.{REST_PERMISSION}',
+    ],
+
+    # 'DEFAULT_AUTHENTICATION_CLASSES': [
+    #     'rest_framework_simplejwt.authentication.JWTAuthentication',
+    # ],
+}
